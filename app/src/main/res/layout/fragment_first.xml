@@ -4,32 +4,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:fillViewport="true"
     tools:context=".FirstFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:padding="24dp">
 
-        <Button
-            android:id="@+id/button_first"
+        <TextView
+            android:id="@+id/titleTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/next"
-            app:layout_constraintBottom_toTopOf="@id/textview_first"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Study"
+            android:textColor="@android:color/white"
+            android:textSize="45sp"
+            app:layout_constraintEnd_toStartOf="@+id/titleTxtView2"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textview_first"
+            android:id="@+id/titleTxtView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="GO"
+            android:textColor="#3B82F6"
+            android:textSize="45sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/titleTxtView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/titleTxtView" />
+
+        <TextView
+            android:id="@+id/subtitleTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Student Grade Optimization System"
+            android:textColor="#EFBF1F"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTxtView" />
+
+        <TextView
+            android:id="@+id/usernameTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Username"
+            android:textColor="#A7A7A7"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/usernameEdtTxt"
+            app:layout_constraintTop_toBottomOf="@+id/subtitleTxtView" />
+
+        <EditText
+            android:id="@+id/usernameEdtTxt"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="#1A1A1A"
+            android:fontFamily="@font/noto_sans"
+            android:hint="Enter username"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="#636363"
+            android:textColorHint="#A7A7A7"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/usernameTxtView" />
+
+        <TextView
+            android:id="@+id/passwordTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Password"
+            android:textColor="#A7A7A7"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/passwordPwdTxt"
+            app:layout_constraintTop_toBottomOf="@+id/usernameEdtTxt" />
+
+        <EditText
+            android:id="@+id/passwordPwdTxt"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="#1A1A1A"
+            android:fontFamily="@font/noto_sans"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:paddingHorizontal="12dp"
+            android:textColorHint="#A7A7A7"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTxtView" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#1F5FC8"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="#FFFAFA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordPwdTxt" />
+
+        <TextView
+            android:id="@+id/forgotPasswordTxtView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Forgot Password?"
+            android:textColor="#A7A7A7"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+        <Button
+            android:id="@+id/guestBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#1A1A1A"
+            android:text="Continue as Guest"
+            android:textAllCaps="false"
+            android:textColor="#A7A7A7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTxtView" />
+
+        <TextView
+            android:id="@+id/underTxtTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Algorithmic planning powered by Knapsack Backtracking"
+            android:textColor="#A7A7A7"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_first" />
+            app:layout_constraintTop_toBottomOf="@+id/guestBtn"
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
