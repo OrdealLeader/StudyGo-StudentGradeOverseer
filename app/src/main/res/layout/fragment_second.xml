@@ -4,32 +4,243 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:fillViewport="true"
     tools:context=".SecondFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:padding="24dp">
 
-        <Button
-            android:id="@+id/button_second"
+        <TextView
+            android:id="@+id/welcomeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous"
-            app:layout_constraintBottom_toTopOf="@id/textview_second"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Welcome back, User"
+            android:textColor="@color/white"
+            android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textview_second"
+            android:id="@+id/overviewTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="Here's your academic overview"
+            android:textColor="@color/text_gray"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
+            app:layout_constraintTop_toBottomOf="@id/welcomeTxt" />
+
+        <!-- Cards Row -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/avgGradeCard"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/card_bg"
+            android:padding="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/statusCard"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/overviewTxt">
+
+            <TextView
+                android:id="@+id/avgLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="Average Grade"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/avgValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="3.0"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_trending_up_24"
+                android:tint="@color/accent_blue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/statusCard"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/card_bg_green_border"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/avgGradeCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/avgGradeCard"
+            app:layout_constraintTop_toTopOf="@+id/avgGradeCard"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/statusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="Status"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/statusValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="Achievable"
+                android:textColor="@color/success_green"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/baseline_info_24"
+                android:tint="@color/success_green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/subjectsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Your Subjects"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/avgGradeCard" />
+
+        <!-- Subject Item 1 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/subjectCard1"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/subjectsTitle">
+
+            <TextView
+                android:id="@+id/subjectName1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/noto_sans_bold"
+                android:maxLines="1"
+                android:text="Design and Analysis of Alg..."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/subjectGrade1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subjectGrade1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="3.0"
+                android:textColor="@color/success_green"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subjectStatus1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Current status: Achievable"
+                android:textColor="@color/success_green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Subject Item 2 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/subjectCard2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/subjectCard1">
+
+            <TextView
+                android:id="@+id/subjectName2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="Subject 2"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/subjectGrade2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subjectGrade2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="3.0"
+                android:textColor="@color/success_green"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subjectStatus2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans"
+                android:text="Current status: Achievable"
+                android:textColor="@color/success_green"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
