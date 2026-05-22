@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import com.example.studygo_studentgradeoverseer.databinding.FragmentFirstBinding;
+import com.example.studygo_studentgradeoverseer.databinding.FragmentLoginBinding;
 
-public class FirstFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private FragmentLoginBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -32,7 +32,7 @@ public class FirstFragment extends Fragment {
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
@@ -40,7 +40,7 @@ public class FirstFragment extends Fragment {
         binding.guestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });

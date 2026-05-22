@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.studygo_studentgradeoverseer.FirstFragment"
+        android:name="com.example.studygo_studentgradeoverseer.LoginFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_login">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -17,16 +17,27 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.studygo_studentgradeoverseer.SecondFragment"
+        android:name="com.example.studygo_studentgradeoverseer.DashboardFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_dashboard">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
 
         <action
-            android:id="@+id/action_SecondFragment_to_courseDetailFragment"
+            android:id="@+id/action_SecondFragment_to_courseInputFragment"
+            app:destination="@id/courseInputFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/courseInputFragment"
+        android:name="com.example.studygo_studentgradeoverseer.CourseInputFragment"
+        android:label="Add Course"
+        tools:layout="@layout/fragment_course_input">
+
+        <action
+            android:id="@+id/action_courseInputFragment_to_courseDetailFragment"
             app:destination="@id/courseDetailFragment" />
     </fragment>
 

@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:fillViewport="true"
-    tools:context=".SecondFragment">
+    tools:context=".DashboardFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="32dp"
         android:padding="24dp">
 
         <TextView
@@ -148,99 +149,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/avgGradeCard" />
 
-        <!-- Subject Item 1 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/subjectCard1"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:background="@drawable/card_bg"
-            android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@id/subjectsTitle">
+            app:layout_constraintTop_toBottomOf="@+id/subjectsTitle"
+            tools:layout_editor_absoluteX="0dp"></LinearLayout>
 
-            <TextView
-                android:id="@+id/subjectName1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/noto_sans_bold"
-                android:maxLines="1"
-                android:text="Design and Analysis of Alg..."
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/subjectGrade1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/addSubjectButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#1F5FC8"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Add Subject"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            <TextView
-                android:id="@+id/subjectGrade1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_bold"
-                android:text="3.0"
-                android:textColor="@color/success_green"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subjectStatus1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans"
-                android:text="Current status: Achievable"
-                android:textColor="@color/success_green"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Subject Item 1 -->
 
         <!-- Subject Item 2 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/subjectCard2"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/card_bg"
-            android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@id/subjectCard1">
-
-            <TextView
-                android:id="@+id/subjectName2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_bold"
-                android:text="Subject 2"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/subjectGrade2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subjectGrade2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans_bold"
-                android:text="3.0"
-                android:textColor="@color/success_green"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/subjectStatus2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_sans"
-                android:text="Current status: Achievable"
-                android:textColor="@color/success_green"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

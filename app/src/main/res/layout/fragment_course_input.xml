@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:fillViewport="true"
+    tools:context=".CourseInputFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        tools:layout_editor_absoluteY="10dp">
+
+        <Button
+            android:id="@+id/addTaskBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/accent_blue"
+            android:text="Add Task"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/taskLinearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/taskInputSubtitleLabel" />
+
+        <TextView
+            android:id="@+id/taskInputSubtitleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Add tasks and their weight"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/addTaskBtn"
+            app:layout_constraintTop_toBottomOf="@+id/courseAddTaskLabel" />
+
+        <TextView
+            android:id="@+id/courseAddTaskLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Task Input"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            app:layout_constraintStart_toStartOf="@+id/taskInputSubtitleLabel"
+            app:layout_constraintTop_toBottomOf="@+id/courseInstructorInput" />
+
+        <EditText
+            android:id="@+id/courseInstructorInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="#1A1A1A"
+            android:fontFamily="@font/noto_sans"
+            android:hint="e.g COSC 203"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseInstructor" />
+
+        <TextView
+            android:id="@+id/courseInstructor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Instructor Name"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/courseInstructorInput"
+            app:layout_constraintTop_toBottomOf="@+id/courseNameInput" />
+
+        <TextView
+            android:id="@+id/courseCodeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Course Code"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/courseCodeInput"
+            app:layout_constraintTop_toBottomOf="@+id/subtitleLabel" />
+
+        <TextView
+            android:id="@+id/inputTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Course Input"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/courseNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Course Name"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/courseNameInput"
+            app:layout_constraintTop_toBottomOf="@+id/courseCodeInput" />
+
+        <TextView
+            android:id="@+id/subtitleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Add a new course to track"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputTitle" />
+
+        <EditText
+            android:id="@+id/courseNameInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="#1A1A1A"
+            android:fontFamily="@font/noto_sans"
+            android:hint="e.g. Data Structures"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseNameLabel" />
+
+        <EditText
+            android:id="@+id/courseCodeInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="#1A1A1A"
+            android:fontFamily="@font/noto_sans"
+            android:hint="e.g COSC 203"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel" />
+
+        <Button
+            android:id="@+id/saveCourseBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/accent_blue"
+            android:text="Save Course"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskLinearLayout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:id="@+id/taskLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@+id/saveCourseBtn"
+            app:layout_constraintTop_toBottomOf="@+id/addTaskBtn"></LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
