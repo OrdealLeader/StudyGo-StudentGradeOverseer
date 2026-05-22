@@ -68,6 +68,9 @@ public class CourseInputFragment extends Fragment {
             }
 
             // 3. Collect Tasks from the dynamic list
+            java.util.ArrayList<String> taskNames = new java.util.ArrayList<>();
+            java.util.ArrayList<String> taskWeights = new java.util.ArrayList<>();
+
             for (int i = 0; i < binding.taskLinearLayout.getChildCount(); i++) {
                 View row = binding.taskLinearLayout.getChildAt(i);
                 ItemTaskInputBinding rowBinding = ItemTaskInputBinding.bind(row);
@@ -75,12 +78,22 @@ public class CourseInputFragment extends Fragment {
                 String taskName = rowBinding.taskNameInput.getText().toString();
                 String taskWeight = rowBinding.taskWeightInput.getText().toString();
 
-                // save to a task object... (We will implement the DB save here next)
+                if (!taskName.isEmpty()) {
+                    taskNames.add(taskName);
+                    taskWeights.add(taskWeight);
+                }
             }
 
             // 4. Navigate back or to detail screen
+            Bundle args = new Bundle();
+            args.putString("courseCode", courseCode);
+            args.putString("courseName", courseName);
+            args.putString("courseInstructor", instructor);
+            args.putStringArrayList("taskNames", taskNames);
+            args.putStringArrayList("taskWeights", taskWeights);
+
             NavHostFragment.findNavController(CourseInputFragment.this)
-                    .navigate(R.id.action_courseInputFragment_to_courseDetailFragment);
+                    .navigate(R.id.action_courseInputFragment_to_courseDetailFragment, args);
         });
 
 
