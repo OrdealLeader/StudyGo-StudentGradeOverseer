@@ -45,5 +45,15 @@
         android:id="@+id/courseDetailFragment"
         android:name="com.example.studygo_studentgradeoverseer.CourseDetailFragment"
         android:label="Course Detail"
-        tools:layout="@layout/fragment_course_detail" />
+        tools:layout="@layout/fragment_course_detail">
+        <argument
+            android:name="courseCode"
+            app:argType="string" />
+        <argument
+            android:name="courseName"
+            app:argType="string" />
+        <argument
+            android:name="courseInstructor"
+            app:argType="string" />
+    </fragment>
 </navigation>

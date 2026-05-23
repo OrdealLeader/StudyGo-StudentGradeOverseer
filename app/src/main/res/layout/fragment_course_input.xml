@@ -18,36 +18,55 @@
             android:id="@+id/addTaskBtn"
             android:layout_width="0dp"
             android:layout_height="56dp"
+            android:layout_marginTop="4dp"
             android:backgroundTint="@color/accent_blue"
             android:text="Add Task"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/taskLinearLayout"
             app:layout_constraintTop_toBottomOf="@+id/taskInputSubtitleLabel" />
-
-        <TextView
-            android:id="@+id/taskInputSubtitleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Add tasks and their weight"
-            android:textColor="@color/text_gray"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/addTaskBtn"
-            app:layout_constraintTop_toBottomOf="@+id/courseAddTaskLabel" />
 
         <TextView
             android:id="@+id/courseAddTaskLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="Task Input"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="@+id/taskInputSubtitleLabel"
             app:layout_constraintTop_toBottomOf="@+id/courseInstructorInput" />
+
+        <Button
+            android:id="@+id/saveCourseBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/accent_blue"
+            android:text="Save Course"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskLinearLayout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/taskInputSubtitleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Add tasks and their weight"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/addTaskBtn"
+            app:layout_constraintTop_toBottomOf="@+id/courseAddTaskLabel" />
 
         <EditText
             android:id="@+id/courseInstructorInput"
@@ -158,22 +177,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel" />
-
-        <Button
-            android:id="@+id/saveCourseBtn"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/accent_blue"
-            android:text="Save Course"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskLinearLayout"
-            app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
             android:id="@+id/taskLinearLayout"
