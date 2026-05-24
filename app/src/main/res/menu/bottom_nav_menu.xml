@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/SecondFragment"
+        android:icon="@drawable/bottom_bar_dashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/courseInputFragment"
+        android:icon="@drawable/bottom_bar_add"
+        android:title="Add" />
+    <item
+        android:id="@+id/SimulatorFragment"
+        android:icon="@drawable/bottom_bar_simulator"
+        android:title="Simulator" />
+    <item
+        android:id="@+id/ResultsFragment"
+        android:icon="@drawable/bottom_bar_results"
+        android:title="Results" />
+    <item
+        android:id="@+id/SettingsFragment"
+        android:icon="@drawable/bottom_bar_profile"
+        android:title="Settings" />
+</menu>

@@ -56,4 +56,25 @@
             android:name="courseInstructor"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/SimulatorFragment"
+        android:name="com.example.studygo_studentgradeoverseer.SimulatorFragment"
+        android:label="Simulator"
+        tools:layout="@layout/fragment_simulator">
+    </fragment>
+
+    <fragment
+        android:id="@+id/ResultsFragment"
+        android:name="com.example.studygo_studentgradeoverseer.ResultsFragment"
+        android:label="Results"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.studygo_studentgradeoverseer.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
 </navigation>

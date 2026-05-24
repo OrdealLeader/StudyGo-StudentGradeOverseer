@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.studygo_studentgradeoverseer.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,8 +32,28 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        
+        // Define bottom navigation tabs as top-level destinations to hide the back arrow
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.SecondFragment, 
+                R.id.courseInputFragment, 
+                R.id.SimulatorFragment, 
+                R.id.ResultsFragment, 
+                R.id.SettingsFragment)
+                .build();
+
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        BottomNavigationView navView = findViewById(R.id.bottom_nav_view);
+        NavigationUI.setupWithNavController(navView, navController);
+
+        navController.addOnDestinationChangedListener(((controller, destination, arguments) ->{
+            if (destination.getId() == R.id.FirstFragment) {
+                navView.setVisibility(View.GONE);
+            } else {
+                navView.setVisibility(View.VISIBLE);
+            }
+        }));
     }
 
     @Override
