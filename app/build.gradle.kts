@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.studygo_studentgradeoverseer"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.studygo_studentgradeoverseer"
@@ -36,6 +36,7 @@ android {
 
 dependencies {
 
+    implementation(libs.activity.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
