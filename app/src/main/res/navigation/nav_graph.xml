@@ -55,5 +55,58 @@
         <argument
             android:name="courseInstructor"
             app:argType="string" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_taskInputFragment"
+            app:destination="@id/taskInputFragment" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_taskEditFragment"
+            app:destination="@id/taskEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskInputFragment"
+        android:name="com.example.studygo_studentgradeoverseer.TaskInputFragment"
+        android:label="Task Input"
+        tools:layout="@layout/fragment_task_input">
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskEditFragment"
+        android:name="com.example.studygo_studentgradeoverseer.TaskEditFragment"
+        android:label="Edit Task"
+        tools:layout="@layout/fragment_task_edit">
+        <argument
+            android:name="taskId"
+            app:argType="string" />
+        <argument
+            android:name="taskName"
+            app:argType="string" />
+        <argument
+            android:name="score"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SimulatorFragment"
+        android:name="com.example.studygo_studentgradeoverseer.SimulatorFragment"
+        android:label="Simulator"
+        tools:layout="@layout/fragment_simulator">
+    </fragment>
+
+    <fragment
+        android:id="@+id/ResultsFragment"
+        android:name="com.example.studygo_studentgradeoverseer.ResultsFragment"
+        android:label="Results"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.studygo_studentgradeoverseer.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
     </fragment>
 </navigation>

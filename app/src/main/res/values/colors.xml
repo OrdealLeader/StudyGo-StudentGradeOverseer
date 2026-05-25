@@ -9,4 +9,9 @@
     <color name="warning_yellow">#FBBF24</color>
     <color name="danger_red">#EF4444</color>
     <color name="badge_gray">#262626</color>
+    <color name="settings_bg">#000000</color>
+    <color name="header_blue_bg">#13203C</color>
+    <color name="profile_box_bg">#1A2F5A</color>
+    <color name="light_blue_text">#8AAAE5</color>
+    <color name="dark_blue_badge">#1B2A4E</color>
 </resources>

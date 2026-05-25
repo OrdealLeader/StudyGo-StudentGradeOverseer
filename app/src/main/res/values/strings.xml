@@ -45,4 +45,10 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="profile_initials">TT</string>
+    <string name="user_full_name">Tung Tung\nTung Sahur</string>
+    <string name="university_name">Polytechnic University of the Philippines</string>
+    <string name="year_level">2nd Year - College</string>
+    <string name="course_name">BS Computer Science</string>
 </resources>
