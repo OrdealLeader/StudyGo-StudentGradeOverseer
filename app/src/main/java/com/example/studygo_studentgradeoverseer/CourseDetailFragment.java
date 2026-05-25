@@ -8,43 +8,25 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.studygo_studentgradeoverseer.databinding.FragmentCourseDetailBinding;
 import com.example.studygo_studentgradeoverseer.databinding.ItemCategoryBinding;
 import com.example.studygo_studentgradeoverseer.databinding.ItemTaskDetailBinding;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import androidx.navigation.fragment.NavHostFragment;
-
 public class CourseDetailFragment extends Fragment {
 
     private FragmentCourseDetailBinding binding;
-    private final Map<String, ItemCategoryBinding> categoryBindings = new HashMap<>();
-    private final Map<String, ItemTaskDetailBinding> taskBindings = new HashMap<>();
-    
-    // Internal state to persist tasks during fragment lifecycle
-    private static class TaskData {
-        String id;
-        String name;
-        String score;
-        String category;
-        TaskData(String id, String name, String score, String category) {
-            this.id = id; this.name = name; this.score = score; this.category = category;
-        }
-    }
-    private final ArrayList<TaskData> taskList = new ArrayList<>();
-    private final ArrayList<String> categoryList = new ArrayList<>();
-    private int taskCounter = 0;
-    private boolean isDataInitialized = false;
+    private CourseViewModel viewModel;
+    private String courseId;
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ){
+       viewModel = new ViewModelProvider(requireActivity()).get(CourseViewModel.class);
        binding = FragmentCourseDetailBinding.inflate(inflater, container, false);
        return binding.getRoot();
     }
@@ -53,110 +35,81 @@ public class CourseDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Setup result listener for new tasks from TaskInputFragment
-        getParentFragmentManager().setFragmentResultListener("taskKey", getViewLifecycleOwner(), (requestKey, result) -> {
-            String taskName = result.getString("taskName");
-            String score = result.getString("score");
-            String items = result.getString("items");
-            String category = result.getString("category");
-
-            String scoreDisplay = score + "/" + items;
-            String taskId = "task_" + (taskCounter++);
-            
-            // Add to internal list
-            TaskData newTask = new TaskData(taskId, taskName, scoreDisplay, category);
-            taskList.add(newTask);
-            
-            // Update UI
-            ItemCategoryBinding catBinding = categoryBindings.get(category);
-            if (catBinding != null) {
-                renderTaskItem(catBinding.itemsContainer, newTask, catBinding);
-            }
-        });
-
-        // Setup result listener for updated tasks from TaskEditFragment
-        getParentFragmentManager().setFragmentResultListener("taskEditKey", getViewLifecycleOwner(), (requestKey, result) -> {
-            String taskId = result.getString("taskId");
-            String taskName = result.getString("taskName");
-            String score = result.getString("score");
-            String items = result.getString("items");
-            String scoreDisplay = score + "/" + items;
-
-            // Update internal list
-            for (TaskData task : taskList) {
-                if (task.id.equals(taskId)) {
-                    task.name = taskName;
-                    task.score = scoreDisplay;
-                    break;
-                }
-            }
-
-            // Update UI specifically
-            ItemTaskDetailBinding itemBinding = taskBindings.get(taskId);
-            if (itemBinding != null) {
-                itemBinding.taskName.setText(taskName);
-                itemBinding.taskScoreValue.setText(scoreDisplay);
-            }
-        });
-
         if (getArguments() != null) {
-            String courseCode = getArguments().getString("courseCode");
-            String courseName = getArguments().getString("courseName");
-            String courseInstructor = getArguments().getString("courseInstructor");
-            ArrayList<String> taskNames = getArguments().getStringArrayList("taskNames");
-
-            if (courseCode != null) {
-                binding.courseCode.setText(courseCode);
-            }
-            if (courseName != null) {
-                binding.courseTitle.setText(courseName);
-            }
-            if (courseInstructor != null) {
-                binding.courseInstructor.setText(courseInstructor);
-            }
-
-            // Initialize data only once
-            if (!isDataInitialized && taskNames != null) {
-                categoryList.addAll(taskNames);
-                for (String cat : categoryList) {
-                    String taskId = "task_" + (taskCounter++);
-                    taskList.add(new TaskData(taskId, cat + " 1", "0/0", cat));
-                }
-                isDataInitialized = true;
-            }
-            
-            // Always render current state
-            renderAllCategories();
+            courseId = getArguments().getString("courseId");
         }
+
+        if (courseId == null) {
+            NavHostFragment.findNavController(this).navigateUp();
+            return;
+        }
+
+        // Observe the course list for updates
+        viewModel.getCourses().observe(getViewLifecycleOwner(), courses -> {
+            CourseViewModel.Course course = viewModel.getCourseById(courseId);
+            if (course != null) {
+                renderCourseDetail(course);
+            }
+        });
+
+        binding.editCourseBtn.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putString("courseId", courseId);
+            NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_courseDetailFragment_to_courseInputFragment, args);
+        });
+
+        binding.deleteCourseBtn.setOnClickListener(v -> {
+            new android.app.AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Course")
+                    .setMessage("Are you sure you want to delete this course?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        viewModel.deleteCourse(courseId);
+                        NavHostFragment.findNavController(this).navigateUp();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
     }
 
-    private void renderAllCategories() {
-        binding.tasksContainer.removeAllViews();
-        categoryBindings.clear();
-        taskBindings.clear();
+    private void renderCourseDetail(CourseViewModel.Course course) {
+        binding.courseCode.setText(course.code);
+        binding.courseTitle.setText(course.name);
+        binding.courseInstructor.setText(course.instructor);
         
-        for (String catName : categoryList) {
+        String gradeStr = String.format(java.util.Locale.US, "%.2f", course.averageGrade);
+        binding.currentGradeValue.setText(gradeStr);
+
+        binding.tasksContainer.removeAllViews();
+
+        for (CourseViewModel.Category category : course.categories) {
             ItemCategoryBinding categoryBinding = ItemCategoryBinding.inflate(
                     getLayoutInflater(),
                     binding.tasksContainer,
                     false
             );
 
-            categoryBinding.categoryName.setText(catName.toUpperCase());
-            categoryBinding.addItemLabel.setText("Add " + catName.toLowerCase());
-            
-            categoryBindings.put(catName, categoryBinding);
+            categoryBinding.categoryName.setText(category.name.toUpperCase());
+            categoryBinding.categoryCount.setText(String.valueOf(category.tasks.size()));
+            categoryBinding.addItemLabel.setText("Add " + category.name.toLowerCase());
 
-            // Render tasks for this category
-            for (TaskData task : taskList) {
-                if (task.category.equals(catName)) {
-                    renderTaskItem(categoryBinding.itemsContainer, task, categoryBinding);
+            if (category.tasks.isEmpty()) {
+                View emptyView = getLayoutInflater().inflate(android.R.layout.simple_list_item_1, categoryBinding.itemsContainer, false);
+                android.widget.TextView tv = emptyView.findViewById(android.R.id.text1);
+                tv.setText("No tasks added yet.");
+                tv.setTextColor(androidx.core.content.ContextCompat.getColor(requireContext(), R.color.text_gray));
+                tv.setTextSize(12);
+                categoryBinding.itemsContainer.addView(emptyView);
+            } else {
+                for (CourseViewModel.Task task : category.tasks) {
+                    renderTaskItem(categoryBinding.itemsContainer, task, category.name);
                 }
             }
 
             categoryBinding.addItemBtn.setOnClickListener(v -> {
                 Bundle args = new Bundle();
-                args.putString("category", catName);
+                args.putString("courseId", courseId);
+                args.putString("categoryName", category.name);
                 NavHostFragment.findNavController(this)
                         .navigate(R.id.action_courseDetailFragment_to_taskInputFragment, args);
             });
@@ -165,32 +118,51 @@ public class CourseDetailFragment extends Fragment {
         }
     }
 
-    private void renderTaskItem(ViewGroup container, TaskData task, ItemCategoryBinding categoryBinding) {
+    private void renderTaskItem(ViewGroup container, CourseViewModel.Task task, String categoryName) {
         ItemTaskDetailBinding itemBinding = ItemTaskDetailBinding.inflate(
                 getLayoutInflater(),
                 container,
                 false
         );
         
-        taskBindings.put(task.id, itemBinding);
-        
         itemBinding.taskName.setText(task.name);
-        itemBinding.taskScoreValue.setText(task.score);
+        String scoreDisplay = (int)task.score + "/" + (int)task.total;
+        itemBinding.taskScoreValue.setText(scoreDisplay);
         
+        itemBinding.finishedCheckbox.setChecked(task.isFinished);
+        
+        // Disable touch on checkbox so it only responds to edit/click if needed, 
+        // or handle changes directly here
+        itemBinding.finishedCheckbox.setOnClickListener(v -> {
+            task.isFinished = itemBinding.finishedCheckbox.isChecked();
+            CourseViewModel.Course course = viewModel.getCourseById(courseId);
+            if (course != null) {
+                course.calculateAverageGrade();
+                viewModel.updateCourse(course);
+            }
+        });
+
         itemBinding.editIcon.setOnClickListener(v -> {
             Bundle args = new Bundle();
+            args.putString("courseId", courseId);
+            args.putString("categoryName", categoryName);
             args.putString("taskId", task.id);
-            args.putString("taskName", task.name);
-            args.putString("score", task.score);
             NavHostFragment.findNavController(this)
                     .navigate(R.id.action_courseDetailFragment_to_taskEditFragment, args);
         });
 
+        itemBinding.deleteIcon.setOnClickListener(v -> {
+            new android.app.AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Task")
+                    .setMessage("Delete this " + categoryName.toLowerCase() + " task?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        viewModel.deleteTask(courseId, categoryName, task.id);
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        });
+
         container.addView(itemBinding.getRoot());
-        
-        // Update count
-        int currentCount = container.getChildCount();
-        categoryBinding.categoryCount.setText(String.valueOf(currentCount));
     }
 
     @Override

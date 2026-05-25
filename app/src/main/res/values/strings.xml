@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">StudyGo-StudentGradeOverseer</string>
+    <string name="app_name">StudyGO</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Login</string>
+    <string name="second_fragment_label">Dashboard</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -51,4 +51,29 @@
     <string name="university_name">Polytechnic University of the Philippines</string>
     <string name="year_level">2nd Year - College</string>
     <string name="course_name">BS Computer Science</string>
+
+    <!-- Simulator Strings -->
+    <string name="simulator_title">Grade Simulator</string>
+    <string name="simulator_subtitle">Predict your path to success</string>
+    <string name="how_it_works_title">How it works</string>
+    <string name="how_it_works_description">Enter your target grade and we\'ll calculate what scores you need on remaining assignments using backtracking optimization algorithms.</string>
+    <string name="select_subject_label">Select Subject</string>
+    <string name="target_grade_label">Target Grade (1.0 - 5.0)</string>
+    <string name="target_grade_hint">e.g. 1.75</string>
+    <string name="calculate_path_btn">Calculate Path</string>
+    <string name="simulator_empty_state">No subjects added yet. Add a course to start simulating!</string>
+    <string name="path_title">Path</string>
+    <string name="achievable_status">Achievable</string>
+    <string name="impossible_status">Not Possible</string>
+    <string name="easy_path_label">🟢 Easy Path (Low Effort)</string>
+    <string name="balanced_path_label">🟡 Balanced Path</string>
+    <string name="difficult_path_label">🔴 Difficult Path</string>
+    <string name="impossible_description">Target grade cannot be reached even with perfect scores.</string>
+    <string name="challenging_status">Challenging</string>
+    <string name="high_risk_status">High Risk</string>
+    <string name="finished_status">Finished</string>
+    <string name="all_tasks_finished">All tasks for this subject are already finished.</string>
+    <string name="required_error">Required</string>
+    <string name="range_error">Range 1.0 - 5.0</string>
+    <string name="invalid_number_error">Invalid number</string>
 </resources>

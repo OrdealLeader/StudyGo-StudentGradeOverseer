@@ -115,6 +115,18 @@
             android:textColorHint="@color/text_gray"
             app:layout_constraintTop_toBottomOf="@id/itemsLabel" />
 
+        <CheckBox
+            android:id="@+id/isFinishedCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Is Finished?"
+            android:textColor="@color/white"
+            android:buttonTint="@color/accent_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemsInput" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button

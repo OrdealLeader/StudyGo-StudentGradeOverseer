@@ -33,7 +33,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_FirstFragment_to_dashboard);
             }
         });
 
@@ -41,7 +41,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_FirstFragment_to_dashboard);
             }
         });
     }

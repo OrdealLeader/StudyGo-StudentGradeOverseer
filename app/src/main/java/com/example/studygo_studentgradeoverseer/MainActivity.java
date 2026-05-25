@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         
         // Define bottom navigation tabs as top-level destinations to hide the back arrow
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.SecondFragment, 
+                R.id.dashboard,
                 R.id.courseInputFragment, 
                 R.id.SimulatorFragment, 
                 R.id.ResultsFragment, 
@@ -48,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         navController.addOnDestinationChangedListener(((controller, destination, arguments) ->{
-            if (destination.getId() == R.id.FirstFragment) {
+            int id = destination.getId();
+            if (id == R.id.FirstFragment || 
+                id == R.id.taskInputFragment || 
+                id == R.id.taskEditFragment || 
+                id == R.id.courseDetailFragment) {
                 navView.setVisibility(View.GONE);
             } else {
                 navView.setVisibility(View.VISIBLE);

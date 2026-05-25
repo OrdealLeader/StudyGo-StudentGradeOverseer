@@ -11,103 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp"
-        tools:layout_editor_absoluteY="10dp">
-
-        <Button
-            android:id="@+id/addTaskBtn"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="@color/accent_blue"
-            android:text="Add Task"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/taskLinearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/taskInputSubtitleLabel" />
-
-        <TextView
-            android:id="@+id/courseAddTaskLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Task Input"
-            android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            app:layout_constraintStart_toStartOf="@+id/taskInputSubtitleLabel"
-            app:layout_constraintTop_toBottomOf="@+id/courseInstructorInput" />
-
-        <Button
-            android:id="@+id/saveCourseBtn"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/accent_blue"
-            android:text="Save Course"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskLinearLayout"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/taskInputSubtitleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Add tasks and their weight"
-            android:textColor="@color/text_gray"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/addTaskBtn"
-            app:layout_constraintTop_toBottomOf="@+id/courseAddTaskLabel" />
-
-        <EditText
-            android:id="@+id/courseInstructorInput"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:background="#1A1A1A"
-            android:fontFamily="@font/noto_sans"
-            android:hint="e.g COSC 203"
-            android:inputType="text"
-            android:paddingHorizontal="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_gray"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseInstructor" />
-
-        <TextView
-            android:id="@+id/courseInstructor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Instructor Name"
-            android:textColor="#3B82F6"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/courseInstructorInput"
-            app:layout_constraintTop_toBottomOf="@+id/courseNameInput" />
-
-        <TextView
-            android:id="@+id/courseCodeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Course Code"
-            android:textColor="#3B82F6"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/courseCodeInput"
-            app:layout_constraintTop_toBottomOf="@+id/subtitleLabel" />
+        android:padding="24dp">
 
         <TextView
             android:id="@+id/inputTitle"
@@ -121,27 +25,56 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/courseNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Course Name"
-            android:textColor="#3B82F6"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/courseNameInput"
-            app:layout_constraintTop_toBottomOf="@+id/courseCodeInput" />
-
-        <TextView
             android:id="@+id/subtitleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
-            android:text="Add a new course to track"
+            android:text="Add or edit a course"
             android:textColor="@color/text_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputTitle" />
+
+        <TextView
+            android:id="@+id/courseCodeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Course Code"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtitleLabel" />
+
+        <EditText
+            android:id="@+id/courseCodeInput"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="#1A1A1A"
+            android:fontFamily="@font/noto_sans"
+            android:hint="e.g. COSC 203"
+            android:inputType="text"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/text_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel" />
+
+        <TextView
+            android:id="@+id/courseNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Course Name"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseCodeInput" />
 
         <EditText
             android:id="@+id/courseNameInput"
@@ -157,26 +90,132 @@
             android:textColorHint="@color/text_gray"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseNameLabel" />
 
+        <TextView
+            android:id="@+id/courseInstructorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Instructor Name"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseNameInput" />
+
         <EditText
-            android:id="@+id/courseCodeInput"
+            android:id="@+id/courseInstructorInput"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:background="#1A1A1A"
             android:fontFamily="@font/noto_sans"
-            android:hint="e.g COSC 203"
-            android:inputType="text"
+            android:hint="e.g. Mr. Dela Cruz"
+            android:inputType="textPersonName"
             android:paddingHorizontal="12dp"
             android:textColor="@color/white"
             android:textColorHint="@color/text_gray"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/courseCodeLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/courseInstructorLabel" />
+
+        <TextView
+            android:id="@+id/gradingSystemLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Grading System Presets"
+            android:textColor="#3B82F6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseInstructorInput" />
+
+        <LinearLayout
+            android:id="@+id/presetButtonsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gradingSystemLabel">
+
+            <Button
+                android:id="@+id/preset7030"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="70/30"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:strokeColor="@color/accent_blue" />
+
+            <Button
+                android:id="@+id/preset6040"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="60/40"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:strokeColor="@color/accent_blue" />
+
+            <Button
+                android:id="@+id/presetCustom"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Custom"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:strokeColor="@color/accent_blue" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/courseAddTaskLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Grading Categories"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/presetButtonsLayout" />
+
+        <TextView
+            android:id="@+id/taskInputSubtitleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="Add categories and their weight (Total must be 100%)"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/courseAddTaskLabel" />
+
+        <Button
+            android:id="@+id/addTaskBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/accent_blue"
+            android:text="Add Category"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskInputSubtitleLabel" />
 
         <LinearLayout
             android:id="@+id/taskLinearLayout"
@@ -184,8 +223,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@+id/saveCourseBtn"
-            app:layout_constraintTop_toBottomOf="@+id/addTaskBtn"></LinearLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addTaskBtn" />
+
+        <Button
+            android:id="@+id/saveCourseBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/accent_blue"
+            android:text="Save Course"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskLinearLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
