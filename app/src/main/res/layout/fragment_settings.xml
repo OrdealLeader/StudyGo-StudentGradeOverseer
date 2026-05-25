@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@color/header_blue_bg"
             android:padding="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
@@ -45,10 +46,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/noto_sans_bold"
+                android:lineSpacingExtra="2dp"
                 android:text="@string/user_full_name"
                 android:textColor="@color/white"
                 android:textSize="26sp"
-                android:lineSpacingExtra="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profileImageContainer"
                 app:layout_constraintTop_toTopOf="@id/profileImageContainer" />
