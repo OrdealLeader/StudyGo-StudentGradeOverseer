@@ -9,16 +9,18 @@ import java.util.List;
 public class CourseEntity {
     @PrimaryKey
     @NonNull
-    public String id; // The UUID from ViewModel is the primary key to prevent duplicates
+    public String id;
     
+    public String userId;
     public String code;
     public String name;
     public String instructor;
     public List<CourseViewModel.Category> categories;
     public double averageGrade;
 
-    public CourseEntity(@NonNull String id, String code, String name, String instructor, List<CourseViewModel.Category> categories, double averageGrade) {
+    public CourseEntity(@NonNull String id, String userId, String code, String name, String instructor, List<CourseViewModel.Category> categories, double averageGrade) {
         this.id = id;
+        this.userId = userId;
         this.code = code;
         this.name = name;
         this.instructor = instructor;

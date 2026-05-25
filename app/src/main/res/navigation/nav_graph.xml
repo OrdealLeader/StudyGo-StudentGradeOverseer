@@ -5,6 +5,12 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/FirstFragment">
 
+    <action
+        android:id="@+id/action_global_FirstFragment"
+        app:destination="@id/FirstFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.studygo_studentgradeoverseer.LoginFragment"
@@ -13,6 +19,21 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_dashboard"
+            app:destination="@id/dashboard"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_FirstFragment_to_SignUpFragment"
+            app:destination="@id/SignUpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignUpFragment"
+        android:name="com.example.studygo_studentgradeoverseer.SignUpFragment"
+        android:label="Sign Up"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_SignUpFragment_to_dashboard"
             app:destination="@id/dashboard"
             app:popUpTo="@id/FirstFragment"
             app:popUpToInclusive="true" />
@@ -123,5 +144,8 @@
         android:name="com.example.studygo_studentgradeoverseer.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_SettingsFragment_to_SignUpFragment"
+            app:destination="@id/SignUpFragment" />
     </fragment>
 </navigation>

@@ -14,4 +14,5 @@
     <color name="profile_box_bg">#1A2F5A</color>
     <color name="light_blue_text">#8AAAE5</color>
     <color name="dark_blue_badge">#1B2A4E</color>
+    <color name="accent_blue_transparent">#223B82F6</color>
 </resources>

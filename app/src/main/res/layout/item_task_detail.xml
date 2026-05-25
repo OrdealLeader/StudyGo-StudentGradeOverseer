@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:background="@drawable/card_bg"
+    android:backgroundTint="?attr/card_surface"
     android:padding="16dp">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
         android:text="Quiz 1"
-        android:textColor="@color/white"
+        android:textColor="?attr/text_primary"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/taskScoreValue"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans"
-        android:text="Score"
-        android:textColor="@color/text_gray"
+        android:text="@string/task_score_label"
+        android:textColor="?attr/text_secondary"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/taskName" />
@@ -62,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/text_gray" />
+        app:tint="?attr/text_secondary" />
 
     <ImageView
         android:id="@+id/deleteIcon"

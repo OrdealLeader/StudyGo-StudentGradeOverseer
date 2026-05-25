@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="?attr/app_background"
     android:padding="24dp"
     tools:context=".TaskEditFragment">
 
@@ -15,7 +15,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/noto_sans_bold"
         android:text="Edit Task"
-        android:textColor="@color/white"
+        android:textColor="?attr/text_primary"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/noto_sans"
         android:text="Update your graded task"
-        android:textColor="@color/text_gray"
+        android:textColor="?attr/text_secondary"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/taskEditTitle" />
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/card_bg"
+        android:backgroundTint="?attr/card_surface"
         android:padding="20dp"
         app:layout_constraintTop_toBottomOf="@id/taskEditSubtitle">
 
@@ -61,8 +62,8 @@
             android:hint="Task Name"
             android:inputType="text"
             android:paddingHorizontal="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_gray"
+            android:textColor="?attr/text_primary"
+            android:textColorHint="?attr/text_secondary"
             app:layout_constraintTop_toBottomOf="@id/taskNameLabel" />
 
         <TextView
@@ -86,8 +87,8 @@
             android:hint="Score"
             android:inputType="number"
             android:paddingHorizontal="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_gray"
+            android:textColor="?attr/text_primary"
+            android:textColorHint="?attr/text_secondary"
             app:layout_constraintTop_toBottomOf="@id/scoreLabel" />
 
         <TextView
@@ -111,8 +112,8 @@
             android:hint="Items"
             android:inputType="number"
             android:paddingHorizontal="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_gray"
+            android:textColor="?attr/text_primary"
+            android:textColorHint="?attr/text_secondary"
             app:layout_constraintTop_toBottomOf="@id/itemsLabel" />
 
         <CheckBox
@@ -122,7 +123,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/noto_sans_bold"
             android:text="Is Finished?"
-            android:textColor="@color/white"
+            android:textColor="?attr/text_primary"
             android:buttonTint="@color/accent_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemsInput" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="?attr/app_background"
     android:fillViewport="true"
     tools:context=".SimulatorFragment">
 
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_bold"
             android:text="@string/simulator_title"
-            android:textColor="@color/white"
+            android:textColor="?attr/text_primary"
             android:textSize="28sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans"
             android:text="@string/simulator_subtitle"
-            android:textColor="@color/text_gray"
+            android:textColor="?attr/text_secondary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/simulatorTitle" />
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/card_bg_blue_border"
+            android:backgroundTint="?attr/card_surface"
             android:padding="16dp"
             app:layout_constraintWidth_max="600dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_bold"
                 android:text="@string/how_it_works_title"
-                android:textColor="@color/white"
+                android:textColor="?attr/text_primary"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +67,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/noto_sans"
                 android:text="@string/how_it_works_description"
-                android:textColor="@color/text_gray"
+                android:textColor="?attr/text_secondary"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -123,8 +124,8 @@
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:paddingHorizontal="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_gray"
+            android:textColor="?attr/text_primary"
+            android:textColorHint="?attr/text_secondary"
             app:layout_constraintWidth_max="600dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,15 +159,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Original resultCard kept hidden for safety or removed -->
-        <View
-            android:id="@+id/resultCard"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <TextView
             android:id="@+id/emptyStateText"
             android:layout_width="match_parent"
@@ -175,7 +167,7 @@
             android:fontFamily="@font/noto_sans"
             android:gravity="center"
             android:text="@string/simulator_empty_state"
-            android:textColor="@color/text_gray"
+            android:textColor="?attr/text_secondary"
             android:textSize="14sp"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/simulatorSubtitle" />

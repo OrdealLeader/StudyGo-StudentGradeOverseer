@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,22 +17,31 @@ public class CourseViewModel extends AndroidViewModel {
 
     private final CourseDao courseDao;
     private final ExecutorService executorService;
+    private String currentUserId = null;
 
     public CourseViewModel(@NonNull Application application) {
         super(application);
         AppDatabase db = AppDatabase.getInstance(application);
         courseDao = db.courseDao();
         executorService = Executors.newSingleThreadExecutor();
+    }
+
+    public void setCurrentUser(String userId) {
+        this.currentUserId = userId;
         loadCoursesFromDb();
     }
 
     private void loadCoursesFromDb() {
+        if (currentUserId == null) {
+            courses.postValue(new ArrayList<>());
+            return;
+        }
         executorService.execute(() -> {
-            List<CourseEntity> entities = courseDao.getAllCourses();
+            List<CourseEntity> entities = courseDao.getCoursesForUser(currentUserId);
             List<Course> loadedCourses = new ArrayList<>();
             for (CourseEntity entity : entities) {
                 Course course = new Course(entity.code, entity.name, entity.instructor, entity.categories);
-                course.id = entity.id; // Keep UUID
+                course.id = entity.id;
                 course.averageGrade = entity.averageGrade;
                 loadedCourses.add(course);
             }
@@ -57,7 +67,7 @@ public class CourseViewModel extends AndroidViewModel {
 
     public static class Category {
         public String name;
-        public double weight; // e.g., 0.3 for 30%
+        public double weight;
         public List<Task> tasks;
 
         public Category(String name, double weight) {
@@ -144,7 +154,7 @@ public class CourseViewModel extends AndroidViewModel {
         List<Course> current = courses.getValue();
         if (current != null) {
             for (int i = 0; i < current.size(); i++) {
-                if (current.get(i).id.equals(updatedCourse.id)) {
+                if (Objects.equals(current.get(i).id, updatedCourse.id)) {
                     current.set(i, updatedCourse);
                     courses.setValue(current);
                     saveCourseToDb(updatedCourse);
@@ -155,8 +165,9 @@ public class CourseViewModel extends AndroidViewModel {
     }
 
     private void saveCourseToDb(Course course) {
+        if (currentUserId == null) return;
         executorService.execute(() -> {
-            CourseEntity entity = new CourseEntity(course.id, course.code, course.name, course.instructor, course.categories, course.averageGrade);
+            CourseEntity entity = new CourseEntity(course.id, currentUserId, course.code, course.name, course.instructor, course.categories, course.averageGrade);
             courseDao.insert(entity);
         });
     }
@@ -165,7 +176,7 @@ public class CourseViewModel extends AndroidViewModel {
         List<Course> current = courses.getValue();
         if (current != null) {
             for (int i = 0; i < current.size(); i++) {
-                if (current.get(i).id.equals(id)) {
+                if (Objects.equals(current.get(i).id, id)) {
                     current.remove(i);
                     courses.setValue(current);
                     executorService.execute(() -> courseDao.deleteById(id));
@@ -175,13 +186,21 @@ public class CourseViewModel extends AndroidViewModel {
         }
     }
 
+    public void deleteAllData() {
+        if (currentUserId == null) return;
+        executorService.execute(() -> {
+            courseDao.deleteByUserId(currentUserId);
+            courses.postValue(new ArrayList<>());
+        });
+    }
+
     public void deleteTask(String courseId, String categoryName, String taskId) {
         Course course = getCourseById(courseId);
         if (course != null) {
             for (Category category : course.categories) {
                 if (category.name.equalsIgnoreCase(categoryName)) {
                     for (int i = 0; i < category.tasks.size(); i++) {
-                        if (category.tasks.get(i).id.equals(taskId)) {
+                        if (Objects.equals(category.tasks.get(i).id, taskId)) {
                             category.tasks.remove(i);
                             course.calculateAverageGrade();
                             updateCourse(course);
@@ -197,9 +216,17 @@ public class CourseViewModel extends AndroidViewModel {
         List<Course> current = courses.getValue();
         if (current != null) {
             for (Course course : current) {
-                if (course.id.equals(id)) return course;
+                if (Objects.equals(course.id, id)) return course;
             }
         }
         return null;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        if (executorService != null) {
+            executorService.shutdown();
+        }
     }
 }

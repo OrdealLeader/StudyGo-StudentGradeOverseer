@@ -21,6 +21,7 @@ public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     private CourseViewModel viewModel;
+    private UserViewModel userViewModel;
 
     @Override
     public View onCreateView(
@@ -28,6 +29,7 @@ public class DashboardFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         viewModel = new ViewModelProvider(requireActivity()).get(CourseViewModel.class);
+        userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
@@ -44,6 +46,12 @@ public class DashboardFragment extends Fragment {
         binding.imageView.setImageTintList(android.content.res.ColorStateList.valueOf(
                 androidx.core.content.ContextCompat.getColor(requireContext(), R.color.text_gray)));
         
+        userViewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
+            if (user != null) {
+                binding.welcomeTxt.setText("Welcome back, " + (user.fullName != null ? user.fullName : "User"));
+            }
+        });
+
         // Observe courses from ViewModel
         viewModel.getCourses().observe(getViewLifecycleOwner(), this::renderCourses);
 

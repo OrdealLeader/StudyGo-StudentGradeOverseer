@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     android:background="@drawable/card_bg"
+    android:backgroundTint="?attr/card_surface"
     android:padding="16dp">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
         android:text="Course Name"
-        android:textColor="@color/white"
+        android:textColor="?attr/text_primary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/subjectScore"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
         android:text=">"
-        android:textColor="@color/text_gray"
+        android:textColor="?attr/text_secondary"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -76,4 +76,33 @@
     <string name="required_error">Required</string>
     <string name="range_error">Range 1.0 - 5.0</string>
     <string name="invalid_number_error">Invalid number</string>
+
+    <string name="about_studygo_title">About StudyGO</string>
+    <string name="version_text">Version 1.0.0 - Student Grade Optimization System</string>
+    <string name="about_description">Powered by backtracking algorithms for intelligent grade path analysis.</string>
+    <string name="reset_data_btn">Reset All Data</string>
+    <string name="sign_out_btn">Sign Out</string>
+    <string name="create_account_btn">Create Account</string>
+
+    <!-- Task Input Strings -->
+    <string name="task_input_title">Task Input</string>
+    <string name="task_input_subtitle">Add a new graded task</string>
+    <string name="task_name_label">TASK NAME</string>
+    <string name="task_name_hint">e.g. Quiz 3</string>
+    <string name="score_label">SCORE</string>
+    <string name="score_hint">Score</string>
+    <string name="items_label">NUMBER OF ITEMS</string>
+    <string name="items_hint">Items</string>
+    <string name="is_finished_label">Is Finished?</string>
+    <string name="save_and_exit_btn">Save and Exit</string>
+
+    <!-- Results Strings -->
+    <string name="final_results_title">Final Results</string>
+    <string name="results_subtitle">Summary of your academic performance</string>
+
+    <!-- Item Category Strings -->
+    <string name="add_task_label">Add task</string>
+
+    <!-- Item Task Detail Strings -->
+    <string name="task_score_label">Score</string>
 </resources>

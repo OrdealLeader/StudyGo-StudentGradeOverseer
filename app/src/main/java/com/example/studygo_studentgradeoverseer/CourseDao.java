@@ -18,6 +18,9 @@ public interface CourseDao {
     @Query("DELETE FROM courses WHERE id = :courseId")
     void deleteById(String courseId);
 
-    @Query("SELECT * FROM courses")
-    List<CourseEntity> getAllCourses();
+    @Query("DELETE FROM courses WHERE userId = :userId")
+    void deleteByUserId(String userId);
+
+    @Query("SELECT * FROM courses WHERE userId = :userId")
+    List<CourseEntity> getCoursesForUser(String userId);
 }
