@@ -229,4 +229,111 @@ public class CourseViewModel extends AndroidViewModel {
             executorService.shutdown();
         }
     }
-}
+        //Simulation Code:
+
+    public static class SimulationResult {
+        public String taskName;
+        public String categoryName;
+        public double requiredScore;
+
+        public SimulationResult(String taskName, String categoryName, double requiredScore) {
+            this.taskName = taskName;
+            this.categoryName = categoryName;
+            this.requiredScore = requiredScore;
+        }
+    }
+
+    // Score options that will be suggested (Testing LOWest first for Minimum Effort)
+    private final double[] SCORE_OPTIONS = {0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0};
+
+    private final MutableLiveData<List<SimulationResult>> simulationResult = new MutableLiveData<>();
+    public LiveData<List<SimulationResult>> getSimulationResult() { return simulationResult; }
+
+    // ============================ MAIN BACKTRACKING LOGIC ============================
+    public void runSimulation(Course course, double targetGradePoint) {
+        executorService.execute(() -> {
+            double targetPercentage = reverseGrade(targetGradePoint);
+
+            double currentWeightedTotal = 0;
+            double totalWeightWithTasks = 0;
+            List<TaskWrapper> futureTasks = new ArrayList<>();
+
+            for (Category cat : course.categories) {
+                double catTotalPoints = 0;
+                for (Task t : cat.tasks) catTotalPoints += t.total;
+
+                // Only consider categories that have at least one task
+                if (catTotalPoints > 0) {
+                    totalWeightWithTasks += cat.weight;
+
+                    for (Task t : cat.tasks) {
+                        // Calculate weight relative to the category's total points
+                        double taskWeight = (t.total / catTotalPoints) * cat.weight;
+
+                        if (t.isFinished) {
+                            if (t.total > 0) {
+                                currentWeightedTotal += (t.score / t.total) * taskWeight;
+                            }
+                        } else {
+                            futureTasks.add(new TaskWrapper(t, cat.name, taskWeight));
+                        }
+                    }
+                }
+            }
+
+            // Consistency fix: Adjusted Target based on defined weights
+            double adjustedTarget = targetPercentage * totalWeightWithTasks;
+
+            List<Double> path = new ArrayList<>();
+            if (backtrack(0, currentWeightedTotal, adjustedTarget, futureTasks, path)) {
+                List<SimulationResult> results = new ArrayList<>();
+                for (int i = 0; i < futureTasks.size(); i++) {
+                    results.add(new SimulationResult(futureTasks.get(i).task.name, futureTasks.get(i).categoryName, path.get(i)));
+                }
+                simulationResult.postValue(results);
+            } else {
+                simulationResult.postValue(null); // Truly impossible
+            }
+        });
+    }
+
+    private boolean backtrack(int index, double current, double target, List<TaskWrapper> tasks, List<Double> path) {
+        if (index == tasks.size()) {
+            return current >= target - 0.01; // Increased epsilon for better stability
+        }
+
+        double maxPossibleRemaining = 0;
+        for (int i = index; i < tasks.size(); i++) {
+            maxPossibleRemaining += tasks.get(i).weight;
+        }
+        
+        if (current + maxPossibleRemaining < target - 0.01) {
+            return false;
+        }
+
+        for (double score : SCORE_OPTIONS) {
+            path.add(score);
+            if (backtrack(index + 1, current + (score * tasks.get(index).weight), target, tasks, path)) {
+                return true;
+            }
+            path.remove(path.size() - 1);
+        }
+        return false;
+    }
+        //reverseGrade - Method to convert 1-5 grading format to percentage
+        private double reverseGrade(double g) {
+            if(g <= 3.0) return (9.0 - g) / 8.0;
+            else return (5.0 - g) / 2.66;
+        }
+        
+        //TaskWrapper - Helper class to keep track of metadata during the recursion
+        private static class TaskWrapper {
+            Task task;
+            String categoryName;
+            double weight;
+            TaskWrapper(Task t, String c, double w) {this.task = t; this.categoryName = c; this.weight = w;}
+        }
+
+
+    }
+
