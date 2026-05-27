@@ -100,11 +100,13 @@
                 android:id="@+id/editProfileBtn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Edit Profile"
                 android:src="@android:drawable/ic_menu_edit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/courseBadge"
                 app:tint="@color/accent_blue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
