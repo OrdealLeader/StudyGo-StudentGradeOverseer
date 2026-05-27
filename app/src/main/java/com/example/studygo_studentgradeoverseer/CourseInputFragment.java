@@ -90,12 +90,13 @@ public class CourseInputFragment extends Fragment {
         rowBinding.removeTaskBtn.setOnClickListener(v -> binding.taskLinearLayout.removeView(rowBinding.getRoot()));
         binding.taskLinearLayout.addView(rowBinding.getRoot());
     }
-
+    // logic for saving a course
     private void saveCourse() {
         String code = binding.courseCodeInput.getText().toString().trim();
         String name = binding.courseNameInput.getText().toString().trim();
         String instructor = binding.courseInstructorInput.getText().toString().trim();
 
+        //error checking for empty course, name, or instructor details
         if (code.isEmpty() || name.isEmpty() || instructor.isEmpty()) {
             Toast.makeText(getContext(), "Please fill all course details", Toast.LENGTH_SHORT).show();
             return;
@@ -111,10 +112,27 @@ public class CourseInputFragment extends Fragment {
             String catName = rowBinding.taskNameInput.getText().toString().trim();
             String catWeightStr = rowBinding.taskWeightInput.getText().toString().trim();
 
-            if (!catName.isEmpty() && !catWeightStr.isEmpty()) {
+            //error checking for empty category name
+            if (catName.isEmpty()) {
+                Toast.makeText(getContext(), "Category name cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            //error checking for empty weight
+            if (catWeightStr.isEmpty()){
+                Toast.makeText(getContext(), "Category weight cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            // invalid weight checker
+            try {
                 double weight = Double.parseDouble(catWeightStr);
                 totalWeight += weight;
-                categories.add(new CourseViewModel.Category(catName, weight / 100.0));
+                categories.add(new CourseViewModel.Category(catName, weight / 100));
+            }
+
+            catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "invalid weight format", Toast.LENGTH_SHORT).show();
+                return;
             }
         }
 

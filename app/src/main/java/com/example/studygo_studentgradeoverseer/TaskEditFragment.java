@@ -69,8 +69,17 @@ public class TaskEditFragment extends Fragment {
         String totalStr = binding.itemsInput.getText().toString().trim();
         boolean isFinished = binding.isFinishedCheckbox.isChecked();
 
+        double score = Double.parseDouble(scoreStr);
+        double total = Double.parseDouble(totalStr);
+
         if (name.isEmpty() || scoreStr.isEmpty() || totalStr.isEmpty()) {
             Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // error check for score much higher than total items in edit task
+        if (score > total) {
+            Toast.makeText(getContext(), "Score cannot be greater than total items", Toast.LENGTH_SHORT).show();
             return;
         }
 

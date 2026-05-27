@@ -48,6 +48,7 @@ public class TaskInputFragment extends Fragment {
         String totalStr = binding.itemsInput.getText().toString().trim();
         boolean isFinished = binding.isFinishedCheckbox.isChecked();
 
+        // error check for empty fields
         if (name.isEmpty() || scoreStr.isEmpty() || totalStr.isEmpty()) {
             Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
@@ -55,6 +56,12 @@ public class TaskInputFragment extends Fragment {
 
         double score = Double.parseDouble(scoreStr);
         double total = Double.parseDouble(totalStr);
+
+        // error check for score much higher than total items in add task
+        if (score > total) {
+            Toast.makeText(getContext(), "Score cannot be greater than total items", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         CourseViewModel.Course course = viewModel.getCourseById(courseId);
         if (course != null) {
