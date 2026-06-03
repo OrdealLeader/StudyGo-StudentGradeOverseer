@@ -16,8 +16,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.studygo_studentgradeoverseer.databinding.FragmentSimulatorBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
+import android.widget.Toast;
 
 public class SimulatorFragment extends Fragment {
 
@@ -46,6 +51,7 @@ public class SimulatorFragment extends Fragment {
                 binding.targetGradeLabel.setVisibility(View.GONE);
                 binding.targetGradeInput.setVisibility(View.GONE);
                 binding.calculateBtn.setVisibility(View.GONE);
+                binding.saveBtn.setVisibility(View.GONE);
                 binding.resultWrapper.setVisibility(View.GONE);
             } else {
                 binding.emptyStateText.setVisibility(View.GONE);
@@ -55,6 +61,7 @@ public class SimulatorFragment extends Fragment {
                 binding.targetGradeLabel.setVisibility(View.VISIBLE);
                 binding.targetGradeInput.setVisibility(View.VISIBLE);
                 binding.calculateBtn.setVisibility(View.VISIBLE);
+                binding.saveBtn.setVisibility(View.VISIBLE);
 
                 List<String> courseNames = new ArrayList<>();
                 for (CourseViewModel.Course c : courses) {
@@ -101,8 +108,42 @@ public class SimulatorFragment extends Fragment {
                 binding.targetGradeInput.setError("Invalid number");
             }
         });
+
+        binding.saveBtn.setOnClickListener(v -> {
+            if (courseList == null || courseList.isEmpty()) return;
+            
+            int selectedIndex = binding.courseSpinner.getSelectedItemPosition();
+            CourseViewModel.Course selectedCourse = courseList.get(selectedIndex);
+            
+            String targetStr = binding.targetGradeInput.getText().toString();
+            if (targetStr.isEmpty()) return;
+            
+            double targetGrade = Double.parseDouble(targetStr);
+            List<CourseViewModel.SimulationResult> currentResults = viewModel.getSimulationResult().getValue();
+            
+            if (currentResults == null) {
+                Toast.makeText(requireContext(), "No result to save", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String userId = viewModel.getCurrentUser();
+            if (userId != null) {
+                String timestamp = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault()).format(new Date());
+                SavedPathEntity newPath = new SavedPathEntity(
+                        UUID.randomUUID().toString(),
+                        userId,
+                        selectedCourse.name,
+                        targetGrade,
+                        timestamp,
+                        currentResults
+                );
+                viewModel.savePath(newPath);
+                Toast.makeText(requireContext(), "Path saved to Results", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    //Method to add the resulted path to the simulator fragment
     private void addResultCard(String title, List<CourseViewModel.SimulationResult> results) {
         View card = getLayoutInflater().inflate(R.layout.item_simulation_path, binding.resultWrapper, false);
         TextView titleView = card.findViewById(R.id.pathTitle);

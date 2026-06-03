@@ -61,6 +61,7 @@
     <string name="target_grade_label">Target Grade (1.0 - 5.0)</string>
     <string name="target_grade_hint">e.g. 1.75</string>
     <string name="calculate_path_btn">Calculate Path</string>
+    <string name="save_path_btn">Save Path</string>
     <string name="simulator_empty_state">No subjects added yet. Add a course to start simulating!</string>
     <string name="path_title">Path</string>
     <string name="achievable_status">Achievable</string>
