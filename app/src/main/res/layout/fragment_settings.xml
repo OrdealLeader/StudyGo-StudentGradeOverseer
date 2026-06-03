@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/header_background"
             android:padding="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <FrameLayout
@@ -50,7 +51,6 @@
                 android:text="User Name"
                 android:textColor="?attr/text_primary"
                 android:textSize="26sp"
-                android:lineSpacingExtra="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profileImageContainer"
                 app:layout_constraintTop_toTopOf="@id/profileImageContainer" />
