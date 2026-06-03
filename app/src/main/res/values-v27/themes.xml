@@ -1,0 +1,16 @@
+<resources>
+    <style name="AppTheme.Light" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="app_background">#F9FAFB</item>
+        <item name="header_background">#FFFFFF</item>
+        <item name="card_surface">#FFFFFF</item>
+        <item name="text_primary">#111827</item>
+        <item name="text_secondary">#4B5563</item>
+        <item name="colorPrimary">#2563EB</item>
+        <item name="theme_border_color">#E5E7EB</item>
+        <item name="nav_item_ripple">#1A000000</item>
+        <item name="nav_indicator_color">#E5E7EB</item>
+        <item name="android:windowBackground">#F9FAFB</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

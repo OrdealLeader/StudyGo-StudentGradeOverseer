@@ -29,9 +29,10 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@drawable/circle_bg_gray"
+            android:backgroundTint="?attr/card_surface"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/text_gray"
+            android:textColor="?attr/text_secondary"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/card_bg_dashed"
+        android:backgroundTint="?attr/card_surface"
         android:padding="12dp">
 
         <TextView
@@ -59,10 +61,10 @@
             android:layout_height="wrap_content"
             android:drawableStart="@android:drawable/ic_input_add"
             android:drawablePadding="8dp"
-            android:drawableTint="@color/text_gray"
+            android:drawableTint="?attr/text_secondary"
             android:fontFamily="@font/noto_sans"
-            android:text="Add task"
-            android:textColor="@color/text_gray"
+            android:text="@string/add_task_label"
+            android:textColor="?attr/text_secondary"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

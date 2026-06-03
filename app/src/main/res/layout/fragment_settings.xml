@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="?attr/app_background"
     android:fillViewport="true"
     tools:context=".SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
 
         <!-- Header Section -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/header_blue_bg"
+            android:background="?attr/header_background"
             android:padding="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,11 +32,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/profileInitials"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/noto_sans_bold"
-                    android:text="@string/profile_initials"
+                    android:text="TT"
                     android:textColor="@color/accent_blue"
                     android:textSize="36sp" />
             </FrameLayout>
@@ -46,9 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/noto_sans_bold"
-                android:lineSpacingExtra="2dp"
-                android:text="@string/user_full_name"
-                android:textColor="@color/white"
+                android:text="User Name"
+                android:textColor="?attr/text_primary"
                 android:textSize="26sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profileImageContainer"
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/noto_sans"
-                android:text="@string/university_name"
+                android:text="University Name"
                 android:textColor="@color/light_blue_text"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/noto_sans"
-                android:text="@string/year_level"
+                android:text="Year Level"
                 android:textColor="@color/accent_blue"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,15 +90,172 @@
                 android:fontFamily="@font/noto_sans_bold"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="8dp"
-                android:text="@string/course_name"
+                android:text="Course Name"
                 android:textColor="@color/accent_blue"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@id/userName"
                 app:layout_constraintTop_toBottomOf="@id/yearLevel" />
 
+            <ImageButton
+                android:id="@+id/editProfileBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Edit Profile"
+                android:src="@android:drawable/ic_menu_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.568"
+                app:layout_constraintStart_toEndOf="@+id/courseBadge"
+                app:tint="@color/accent_blue" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Rest of the settings content can go here -->
+        <Button
+            android:id="@+id/createAccountBtn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="24dp"
+            android:backgroundTint="@color/accent_blue"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="@string/create_account_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/headerContainer" />
+
+        <TextView
+            android:id="@+id/themeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="App Theme"
+            android:textColor="?attr/text_primary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/createAccountBtn" />
+
+        <LinearLayout
+            android:id="@+id/themeOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/themeLabel">
+
+            <Button
+                android:id="@+id/darkThemeBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Dark"
+                android:textColor="?attr/text_primary"
+                app:strokeColor="?attr/theme_border_color" />
+
+            <Button
+                android:id="@+id/lightThemeBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Light"
+                android:textColor="?attr/text_primary"
+                app:strokeColor="?attr/theme_border_color" />
+
+            <Button
+                android:id="@+id/blueThemeBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Blue"
+                android:textColor="?attr/text_primary"
+                app:strokeColor="?attr/theme_border_color" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/resetDataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="24dp"
+            android:backgroundTint="?attr/card_surface"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="@string/reset_data_btn"
+            android:textAllCaps="false"
+            android:textColor="#EF4444"
+            app:layout_constraintTop_toBottomOf="@id/themeOptions" />
+
+        <!-- About Card -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aboutCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/card_bg_blue_border"
+            android:backgroundTint="?attr/card_surface"
+            android:padding="20dp"
+            app:layout_constraintTop_toBottomOf="@id/resetDataBtn">
+
+            <TextView
+                android:id="@+id/aboutTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="@string/about_studygo_title"
+                android:textColor="?attr/text_primary"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/versionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="@string/version_text"
+                android:textColor="@color/light_blue_text"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aboutTitle" />
+
+            <TextView
+                android:id="@+id/aboutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="@string/about_description"
+                android:textColor="?attr/text_secondary"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/versionText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signOutBtn"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="24dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="@string/sign_out_btn"
+            android:textAllCaps="false"
+            android:textColor="#EF4444"
+            app:icon="@android:drawable/ic_lock_power_off"
+            app:iconTint="#EF4444"
+            app:iconGravity="textStart"
+            app:layout_constraintTop_toBottomOf="@id/aboutCard" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
     android:background="@drawable/card_bg"
+    android:backgroundTint="?attr/card_surface"
     android:padding="16dp">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_bold"
         android:text="Quiz 1"
-        android:textColor="@color/white"
+        android:textColor="?attr/text_primary"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/taskScoreValue"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans"
-        android:text="Score"
-        android:textColor="@color/text_gray"
+        android:text="@string/task_score_label"
+        android:textColor="?attr/text_secondary"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/taskName" />
@@ -39,29 +40,39 @@
         android:textColor="@color/success_green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/starIcon"
+        app:layout_constraintEnd_toStartOf="@+id/finishedCheckbox"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="12dp"/>
 
-    <ImageView
-        android:id="@+id/starIcon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@android:drawable/btn_star_big_off"
+    <CheckBox
+        android:id="@+id/finishedCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/accent_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editIcon"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="12dp"
-        app:tint="@color/warning_yellow" />
+        android:layout_marginEnd="8dp" />
 
     <ImageView
         android:id="@+id/editIcon"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
         android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/text_secondary" />
+
+    <ImageView
+        android:id="@+id/deleteIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@android:drawable/ic_menu_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/text_gray" />
+        app:tint="#EF4444" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

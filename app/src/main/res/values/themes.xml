@@ -1,9 +1,64 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.StudyGoStudentGradeOverseer" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="android:windowBackground">?attr/app_background</item>
     </style>
 
     <style name="Theme.StudyGoStudentGradeOverseer" parent="Base.Theme.StudyGoStudentGradeOverseer" />
+
+    <!-- Theme Attributes -->
+    <attr name="app_background" format="color" />
+    <attr name="header_background" format="color" />
+    <attr name="card_surface" format="color" />
+    <attr name="text_primary" format="color" />
+    <attr name="text_secondary" format="color" />
+    <attr name="theme_border_color" format="color" />
+    <attr name="nav_item_ripple" format="color" />
+    <attr name="nav_indicator_color" format="color" />
+
+    <!-- Dark Theme (True Dark - Neutral) -->
+    <style name="AppTheme.Dark" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="app_background">#000000</item>
+        <item name="header_background">#121212</item>
+        <item name="card_surface">#1E1E1E</item>
+        <item name="text_primary">#FFFFFF</item>
+        <item name="text_secondary">#9CA3AF</item>
+        <item name="colorPrimary">#3B82F6</item>
+        <item name="theme_border_color">#374151</item>
+        <item name="nav_item_ripple">#26FFFFFF</item>
+        <item name="nav_indicator_color">#2C2C2C</item>
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:navigationBarColor">#121212</item>
+    </style>
+
+    <!-- Light Theme (Soft & Clean) -->
+    <style name="AppTheme.Light" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="app_background">#F9FAFB</item>
+        <item name="header_background">#FFFFFF</item>
+        <item name="card_surface">#FFFFFF</item>
+        <item name="text_primary">#111827</item>
+        <item name="text_secondary">#4B5563</item>
+        <item name="colorPrimary">#2563EB</item>
+        <item name="theme_border_color">#E5E7EB</item>
+        <item name="nav_item_ripple">#1A000000</item>
+        <item name="nav_indicator_color">#E5E7EB</item>
+        <item name="android:windowBackground">#F9FAFB</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+    </style>
+
+    <!-- Blue Theme (Modern Navy) -->
+    <style name="AppTheme.Blue" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="app_background">#0F172A</item>
+        <item name="header_background">#1E293B</item>
+        <item name="card_surface">#1E293B</item>
+        <item name="text_primary">#F8FAFC</item>
+        <item name="text_secondary">#94A3B8</item>
+        <item name="colorPrimary">#38BDF8</item>
+        <item name="theme_border_color">#334155</item>
+        <item name="nav_item_ripple">#2638BDF8</item>
+        <item name="nav_indicator_color">#334155</item>
+        <item name="android:windowBackground">#0F172A</item>
+        <item name="android:navigationBarColor">#1E293B</item>
+    </style>
 </resources>
