@@ -16,6 +16,7 @@ import java.util.concurrent.Executors;
 public class CourseViewModel extends AndroidViewModel {
 
     private final CourseDao courseDao;
+    private final PathDao pathDao;
     private final ExecutorService executorService;
     private String currentUserId = null;
 
@@ -23,12 +24,32 @@ public class CourseViewModel extends AndroidViewModel {
         super(application);
         AppDatabase db = AppDatabase.getInstance(application);
         courseDao = db.courseDao();
+        pathDao = db.pathDao();
         executorService = Executors.newSingleThreadExecutor();
+    }
+
+    public void savePath(SavedPathEntity path) {
+        executorService.execute(() -> pathDao.insertPath(path));
+    }
+
+    public LiveData<List<SavedPathEntity>> getSavedPaths() {
+        if (currentUserId == null) {
+            return new MutableLiveData<>(new ArrayList<>());
+        }
+        return pathDao.getPathsForUser(currentUserId);
+    }
+
+    public void deletePath(String id) {
+        executorService.execute(() -> pathDao.deleteById(id));
     }
 
     public void setCurrentUser(String userId) {
         this.currentUserId = userId;
         loadCoursesFromDb();
+    }
+
+    public String getCurrentUser() {
+        return currentUserId;
     }
 
     private void loadCoursesFromDb() {

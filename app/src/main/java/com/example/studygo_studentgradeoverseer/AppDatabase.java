@@ -6,13 +6,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {CourseEntity.class, UserEntity.class}, version = 3, exportSchema = false)
+@Database(entities = {CourseEntity.class, UserEntity.class, SavedPathEntity.class}, version = 3, exportSchema = false)
 @TypeConverters({DataConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 
     public abstract CourseDao courseDao();
     public abstract UserDao userDao();
+    public abstract PathDao pathDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {

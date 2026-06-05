@@ -172,5 +172,18 @@
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/simulatorSubtitle" />
 
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/success_green"
+            android:fontFamily="@font/noto_sans_bold"
+            android:text="@string/save_path_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/resultWrapper" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

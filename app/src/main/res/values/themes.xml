@@ -2,7 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.StudyGoStudentGradeOverseer" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/accent_blue</item>
-        <item name="android:windowBackground">?attr/app_background</item>
+        <item name="android:windowBackground">#000000</item>
+
+        <!-- Default values for custom attributes so Preview works -->
+        <item name="app_background">#000000</item>
+        <item name="text_primary">#FFFFFF</item>
+        <item name="text_secondary">#9CA3AF</item>
+        <item name="card_surface">#1E1E1E</item>
     </style>
 
     <style name="Theme.StudyGoStudentGradeOverseer" parent="Base.Theme.StudyGoStudentGradeOverseer" />
