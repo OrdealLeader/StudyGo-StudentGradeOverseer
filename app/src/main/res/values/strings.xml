@@ -98,8 +98,8 @@
     <string name="save_and_exit_btn">Save and Exit</string>
 
     <!-- Results Strings -->
-    <string name="final_results_title">Final Results</string>
-    <string name="results_subtitle">Summary of your academic performance</string>
+    <string name="final_results_title">Results</string>
+    <string name="results_subtitle">A summary of all saved paths</string>
 
     <!-- Item Category Strings -->
     <string name="add_task_label">Add task</string>
