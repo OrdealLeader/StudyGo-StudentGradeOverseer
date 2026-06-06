@@ -8,138 +8,163 @@
     android:padding="24dp"
     tools:context=".TaskEditFragment">
 
-    <TextView
-        android:id="@+id/taskEditTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/noto_sans_bold"
-        android:text="Edit Task"
-        android:textColor="?attr/text_primary"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/taskEditSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/noto_sans"
-        android:text="Update your graded task"
-        android:textColor="?attr/text_secondary"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/taskEditTitle" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/editCard"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/card_bg"
-        android:backgroundTint="?attr/card_surface"
-        android:padding="20dp"
-        app:layout_constraintTop_toBottomOf="@id/taskEditSubtitle">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/taskNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="TASK NAME"
-            android:textColor="@color/accent_blue"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/taskNameInput"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Task Name"
-            android:inputType="text"
-            android:paddingHorizontal="16dp"
-            android:textColor="?attr/text_primary"
-            android:textColorHint="?attr/text_secondary"
-            app:layout_constraintTop_toBottomOf="@id/taskNameLabel" />
-
-        <TextView
-            android:id="@+id/scoreLabel"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="SCORE"
-            android:textColor="@color/accent_blue"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/taskNameInput" />
+            android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/scoreInput"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Score"
-            android:inputType="number"
-            android:paddingHorizontal="16dp"
-            android:textColor="?attr/text_primary"
-            android:textColorHint="?attr/text_secondary"
-            app:layout_constraintTop_toBottomOf="@id/scoreLabel" />
+            <TextView
+                android:id="@+id/taskEditTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="Edit Task"
+                android:textColor="?attr/text_primary"
+                android:textSize="28sp" />
 
-        <TextView
-            android:id="@+id/itemsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="NUMBER OF ITEMS"
-            android:textColor="@color/accent_blue"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scoreInput" />
+            <TextView
+                android:id="@+id/taskEditSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/noto_sans"
+                android:text="Update your graded task"
+                android:textColor="?attr/text_secondary"
+                android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/itemsInput"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Items"
-            android:inputType="number"
-            android:paddingHorizontal="16dp"
-            android:textColor="?attr/text_primary"
-            android:textColorHint="?attr/text_secondary"
-            app:layout_constraintTop_toBottomOf="@id/itemsLabel" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/editCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/card_bg"
+                android:backgroundTint="?attr/card_surface"
+                android:padding="20dp">
 
-        <CheckBox
-            android:id="@+id/isFinishedCheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:text="Is Finished?"
-            android:textColor="?attr/text_primary"
-            android:buttonTint="@color/accent_blue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/itemsInput" />
+                <TextView
+                    android:id="@+id/taskNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="TASK NAME"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/taskNameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Task Name"
+                    android:inputType="text"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="?attr/text_primary"
+                    android:textColorHint="?attr/text_secondary"
+                    app:layout_constraintTop_toBottomOf="@id/taskNameLabel" />
 
-    <Button
-        android:id="@+id/saveEditBtn"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/accent_blue"
-        android:fontFamily="@font/noto_sans_bold"
-        android:text="Save and Exit"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent" />
+                <TextView
+                    android:id="@+id/scoreLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="SCORE"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/taskNameInput" />
+
+                <EditText
+                    android:id="@+id/scoreInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Score"
+                    android:inputType="number"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="?attr/text_primary"
+                    android:textColorHint="?attr/text_secondary"
+                    app:layout_constraintTop_toBottomOf="@id/scoreLabel" />
+
+                <TextView
+                    android:id="@+id/itemsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="NUMBER OF ITEMS"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/scoreInput" />
+
+                <EditText
+                    android:id="@+id/itemsInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:hint="Items"
+                    android:inputType="number"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="?attr/text_primary"
+                    android:textColorHint="?attr/text_secondary"
+                    app:layout_constraintTop_toBottomOf="@id/itemsLabel" />
+
+                <CheckBox
+                    android:id="@+id/isFinishedCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:buttonTint="@color/accent_blue"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="Is Finished?"
+                    android:textColor="?attr/text_primary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/itemsInput" />
+
+                <TextView
+                    android:id="@+id/confidenceLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:text="CONFIDENCE (1-5)"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/isFinishedCheckbox" />
+
+                <Spinner
+                    android:id="@+id/confidenceSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:layout_constraintTop_toBottomOf="@id/confidenceLabel" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/saveEditBtn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/accent_blue"
+                android:fontFamily="@font/noto_sans_bold"
+                android:text="Save and Exit"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

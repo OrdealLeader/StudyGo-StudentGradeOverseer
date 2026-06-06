@@ -14,6 +14,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.studygo_studentgradeoverseer.databinding.FragmentTaskInputBinding;
 
+import java.util.Arrays;
+
 public class TaskInputFragment extends Fragment {
 
     private FragmentTaskInputBinding binding;
@@ -39,6 +41,14 @@ public class TaskInputFragment extends Fragment {
             binding.taskInputSubtitle.setText("Add a new " + categoryName.toLowerCase() + " task");
         }
 
+        // Setup confidence spinner
+        String[] levels = {"1 - Not Confident", "2 - Unsure", "3 - Neutral", "4 - Confident", "5 - Very Confident"};
+        android.widget.ArrayAdapter<String> adapter = new android.widget.ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_spinner_item, levels);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.confidenceSpinner.setAdapter(adapter);
+        binding.confidenceSpinner.setSelection(2); // Default to 3 (Neutral)
+
         binding.saveTaskBtn.setOnClickListener(v -> saveTask());
     }
 
@@ -47,6 +57,7 @@ public class TaskInputFragment extends Fragment {
         String scoreStr = binding.scoreInput.getText().toString().trim();
         String totalStr = binding.itemsInput.getText().toString().trim();
         boolean isFinished = binding.isFinishedCheckbox.isChecked();
+        int confidence = binding.confidenceSpinner.getSelectedItemPosition() + 1;
 
         // error check for empty fields
         if (name.isEmpty() || scoreStr.isEmpty() || totalStr.isEmpty()) {
@@ -67,7 +78,7 @@ public class TaskInputFragment extends Fragment {
         if (course != null) {
             for (CourseViewModel.Category category : course.categories) {
                 if (category.name.equalsIgnoreCase(categoryName)) {
-                    category.tasks.add(new CourseViewModel.Task(name, score, total, isFinished));
+                    category.tasks.add(new CourseViewModel.Task(name, score, total, isFinished, confidence));
                     course.calculateAverageGrade();
                     viewModel.updateCourse(course);
                     break;

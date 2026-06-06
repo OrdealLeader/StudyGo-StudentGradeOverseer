@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,13 @@ public class TaskEditFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Setup confidence spinner
+        String[] levels = {"1 - Not Confident", "2 - Unsure", "3 - Neutral", "4 - Confident", "5 - Very Confident"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_spinner_item, levels);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.confidenceSpinner.setAdapter(adapter);
+
         if (getArguments() != null) {
             courseId = getArguments().getString("courseId");
             categoryName = getArguments().getString("categoryName");
@@ -55,6 +63,7 @@ public class TaskEditFragment extends Fragment {
                             binding.scoreInput.setText(String.valueOf((int)task.score));
                             binding.itemsInput.setText(String.valueOf((int)task.total));
                             binding.isFinishedCheckbox.setChecked(task.isFinished);
+                            binding.confidenceSpinner.setSelection(Math.max(0, task.confidence - 1));
                             return;
                         }
                     }
@@ -68,12 +77,20 @@ public class TaskEditFragment extends Fragment {
         String scoreStr = binding.scoreInput.getText().toString().trim();
         String totalStr = binding.itemsInput.getText().toString().trim();
         boolean isFinished = binding.isFinishedCheckbox.isChecked();
-
-        double score = Double.parseDouble(scoreStr);
-        double total = Double.parseDouble(totalStr);
+        int confidence = binding.confidenceSpinner.getSelectedItemPosition() + 1;
 
         if (name.isEmpty() || scoreStr.isEmpty() || totalStr.isEmpty()) {
             Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        double score;
+        double total;
+        try {
+            score = Double.parseDouble(scoreStr);
+            total = Double.parseDouble(totalStr);
+        } catch (NumberFormatException e) {
+            Toast.makeText(getContext(), "Invalid number format", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -90,9 +107,10 @@ public class TaskEditFragment extends Fragment {
                     for (CourseViewModel.Task task : category.tasks) {
                         if (task.id.equals(taskId)) {
                             task.name = name;
-                            task.score = Double.parseDouble(scoreStr);
-                            task.total = Double.parseDouble(totalStr);
+                            task.score = score;
+                            task.total = total;
                             task.isFinished = isFinished;
+                            task.confidence = confidence;
                             course.calculateAverageGrade();
                             viewModel.updateCourse(course);
                             break;

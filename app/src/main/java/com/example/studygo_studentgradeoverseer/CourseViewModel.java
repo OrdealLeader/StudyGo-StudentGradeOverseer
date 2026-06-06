@@ -76,13 +76,15 @@ public class CourseViewModel extends AndroidViewModel {
         public double score;
         public double total;
         public boolean isFinished;
+        public int confidence; // 1-5 scale
 
-        public Task(String name, double score, double total, boolean isFinished) {
+        public Task(String name, double score, double total, boolean isFinished, int confidence) {
             this.id = UUID.randomUUID().toString();
             this.name = name;
             this.score = score;
             this.total = total;
             this.isFinished = isFinished;
+            this.confidence = confidence;
         }
     }
 
@@ -270,6 +272,9 @@ public class CourseViewModel extends AndroidViewModel {
     private final MutableLiveData<List<SimulationResult>> simulationResult = new MutableLiveData<>();
     public LiveData<List<SimulationResult>> getSimulationResult() { return simulationResult; }
 
+    private List<Double> currentBestPath;
+    private double minStrain;
+
     // ============================ MAIN BACKTRACKING LOGIC ============================
     public void runSimulation(Course course, double targetGradePoint) {
         executorService.execute(() -> {
@@ -283,12 +288,10 @@ public class CourseViewModel extends AndroidViewModel {
                 double catTotalPoints = 0;
                 for (Task t : cat.tasks) catTotalPoints += t.total;
 
-                // Only consider categories that have at least one task
                 if (catTotalPoints > 0) {
                     totalWeightWithTasks += cat.weight;
 
                     for (Task t : cat.tasks) {
-                        // Calculate weight relative to the category's total points
                         double taskWeight = (t.total / catTotalPoints) * cat.weight;
 
                         if (t.isFinished) {
@@ -302,44 +305,68 @@ public class CourseViewModel extends AndroidViewModel {
                 }
             }
 
-            // Consistency fix: Adjusted Target based on defined weights
             double adjustedTarget = targetPercentage * totalWeightWithTasks;
+            
+            // Reset optimization variables for global minimum search
+            currentBestPath = null;
+            minStrain = Double.MAX_VALUE;
 
-            List<Double> path = new ArrayList<>();
-            if (backtrack(0, currentWeightedTotal, adjustedTarget, futureTasks, path)) {
+            backtrack(0, currentWeightedTotal, adjustedTarget, 0.0, futureTasks, new ArrayList<>());
+
+            if (currentBestPath != null) {
                 List<SimulationResult> results = new ArrayList<>();
                 for (int i = 0; i < futureTasks.size(); i++) {
-                    results.add(new SimulationResult(futureTasks.get(i).task.name, futureTasks.get(i).categoryName, path.get(i)));
+                    results.add(new SimulationResult(futureTasks.get(i).task.name, futureTasks.get(i).categoryName, currentBestPath.get(i)));
                 }
                 simulationResult.postValue(results);
             } else {
-                simulationResult.postValue(null); // Truly impossible
+                simulationResult.postValue(null); // Impossible
             }
         });
     }
 
-    private boolean backtrack(int index, double current, double target, List<TaskWrapper> tasks, List<Double> path) {
+    /**
+     * Exhaustive Backtracking Search
+     * Minimizes "Strain" = sum(score / confidence)
+     */
+    private void backtrack(int index, double currentGrade, double target, double currentStrain, List<TaskWrapper> tasks, List<Double> path) {
+        // Base Case: All tasks assigned
         if (index == tasks.size()) {
-            return current >= target - 0.01; // Increased epsilon for better stability
+            if (currentGrade >= target - 0.01) {
+                // If this is the easiest path found so far, save it
+                if (currentStrain < minStrain) {
+                    minStrain = currentStrain;
+                    currentBestPath = new ArrayList<>(path);
+                }
+            }
+            return;
         }
 
-        double maxPossibleRemaining = 0;
+        // PRUNING: Is it mathematically possible to reach the target?
+        double maxPossibleRemainingGrade = 0;
         for (int i = index; i < tasks.size(); i++) {
-            maxPossibleRemaining += tasks.get(i).weight;
+            maxPossibleRemainingGrade += tasks.get(i).weight;
         }
-        
-        if (current + maxPossibleRemaining < target - 0.01) {
-            return false;
+        if (currentGrade + maxPossibleRemainingGrade < target - 0.01) {
+            return;
         }
 
+        // Try options (Testing all scores from 0% up to 100%)
         for (double score : SCORE_OPTIONS) {
             path.add(score);
-            if (backtrack(index + 1, current + (score * tasks.get(index).weight), target, tasks, path)) {
-                return true;
-            }
-            path.remove(path.size() - 1);
+            
+            // Confidence (1-5) acts as a weight. High confidence makes score "cheaper".
+            double addedStrain = score / (double) tasks.get(index).confidence;
+            
+            backtrack(index + 1, 
+                    currentGrade + (score * tasks.get(index).weight), 
+                    target, 
+                    currentStrain + addedStrain, 
+                    tasks, 
+                    path);
+            
+            path.remove(path.size() - 1); // Backtrack
         }
-        return false;
     }
         //reverseGrade - Method to convert 1-5 grading format to percentage
         private double reverseGrade(double g) {
@@ -352,7 +379,13 @@ public class CourseViewModel extends AndroidViewModel {
             Task task;
             String categoryName;
             double weight;
-            TaskWrapper(Task t, String c, double w) {this.task = t; this.categoryName = c; this.weight = w;}
+            int confidence;
+            TaskWrapper(Task t, String c, double w) {
+                this.task = t;
+                this.categoryName = c;
+                this.weight = w;
+                this.confidence = t.confidence;
+            }
         }
 
 
